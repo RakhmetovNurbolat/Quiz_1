@@ -15,8 +15,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{route('blog')}}" class="nav-link {{active_link('blog*')}}" aria-current="page" >
-                    {{ __('blog') }}
+                <a href="{{route('quiz')}}" class="nav-link {{active_link('quiz*')}}" aria-current="page" >
+                    {{ __('Тест') }}
                 </a>
             </li>
         </ul>

@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\BlogController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\QuizController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\TestController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +21,6 @@ Route::view('/', 'home.index')->name('home');
 
 Route::redirect('/home' , '/')->name('home.redirect');
 
-Route::get('/test', TestController::class)->name('test');
 
 //Route::middleware('guest')->group(function(){
 Route::middleware('guest')->group(function(){
@@ -32,10 +31,18 @@ Route::middleware('guest')->group(function(){
     Route::post('/login', [LoginController::class, 'store'])->name('login.store');
 });
 
-Route::get('blog', [BlogController::class, 'index'])->name('blog');
-    
-Route::get('blog/{post}', [BlogController::class, 'show'])->name('blog.show');
 
-Route::post('blog/{post}/like', [BlogController::class, 'store'])->name('blog.store');
+Route::get('quiz', [QuizController::class, 'index'])->name('quiz');
+Route::get('/quiz/{id}', [QuizController::class, 'show'])->name('quiz.show');
+
+Route::get('/quizzes/create', [QuizController::class, 'create'])->name('quizzes.create');
+Route::post('/quizzes', [QuizController::class, 'store'])->name('quizzes.store');
+
+Route::get('/quizzes/{quiz}', [QuizController::class, 'show'])->name('quizzes.show');
+
+Route::get('/quizzes/{quiz}/start', [QuizController::class, 'startQuiz'])->name('quizzes.start');
+Route::post('/quizzes/{quiz}/submit', [QuizController::class, 'submitQuiz'])->name('quizzes.submit');
+
+
 
 //-----------------------------------------------------
