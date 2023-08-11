@@ -10,7 +10,8 @@ class QuizController extends Controller
 {
     public function index()
     {
-        return view('quizzes.create');
+        $quizzes = Quiz::query()->get();
+        return view('quizzes.index', compact('quizzes'));
     }
 
     public function create()
@@ -30,14 +31,20 @@ class QuizController extends Controller
             'title' => $validated['title'],
             'description' => $validated['description'],
         ]);
-        dd($quiz);
+        //dd($quiz);
     }
 
     public function show(Quiz $quiz)
     {
-        // Отображение информации о квизе
+        return view('quizzes.show', compact('quiz'));
     }
 
+    public function edit(Quiz $quiz){
+        return view('quizzes.edit', compact('quiz'));
+    }
+    public function update(Request $request, Quiz $quiz){
+        return view('quizzes.edit', compact('quiz'));
+    }
     public function startQuiz(Quiz $quiz)
     {
         // Начало прохождения квиза

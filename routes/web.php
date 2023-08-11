@@ -32,13 +32,14 @@ Route::middleware('guest')->group(function(){
 });
 
 
-Route::get('quiz', [QuizController::class, 'index'])->name('quiz');
-Route::get('/quiz/{id}', [QuizController::class, 'show'])->name('quiz.show');
+Route::get('/quizzes', [QuizController::class, 'index'])->name('quizzes');
+Route::get('/quizzes/{quiz}', [QuizController::class, 'show'])->name('quizzes.show');
 
 Route::get('/quizzes/create', [QuizController::class, 'create'])->name('quizzes.create');
 Route::post('/quizzes', [QuizController::class, 'store'])->name('quizzes.store');
 
-Route::get('/quizzes/{quiz}', [QuizController::class, 'show'])->name('quizzes.show');
+Route::get('/quizzes/{quiz}/edit', [QuizController::class, 'edit'])->name('quizzes.edit');
+Route::get('/quizzes/{quiz}', [QuizController::class, 'update'])->name('quizzes.update');
 
 Route::get('/quizzes/{quiz}/start', [QuizController::class, 'startQuiz'])->name('quizzes.start');
 Route::post('/quizzes/{quiz}/submit', [QuizController::class, 'submitQuiz'])->name('quizzes.submit');
