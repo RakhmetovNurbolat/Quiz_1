@@ -4,6 +4,7 @@
 
 @section('main.content')
         <x-title>
+
             {{  $quiz->title }}
 
             <x-slot name="right">
@@ -11,13 +12,29 @@
                     {{__('Редактировать')}}
                 </x-button-link>
             </x-slot>
+
+            <x-slot name="delete">
+                <x-form action="{{route('quizzes.delete', $quiz->id)}} " method="delete">
+                    <x-button size="sm">
+                        {{__('Удалить')}}
+                    </x-button-link>
+                </x-form>
+            </x-slot>
+
+            <x-slot name="question">
+                <x-button-link href="{{ route('questions.create', $quiz->id) }}">
+                    {{__('Добавить вопрос')}}
+                </x-button-link>
+            </x-slot>
+  
+
         </x-title>
         
         <div class="mb-3">
             <h2 class="h6 mb-2">
-                {!! $quiz->content !!}  
+                {!! $quiz->description !!}  
             </h2>
-            <a href="{{ route('quizzes.index') }}">
+            <a href="{{ route('quizzes') }}">
                 {{__('Назад')}}
             </a>
         </div>

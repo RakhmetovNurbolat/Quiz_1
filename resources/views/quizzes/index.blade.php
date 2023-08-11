@@ -18,16 +18,15 @@
             @foreach ($quizzes as $quiz)
                 <div class="mb-3">
                     <h2 class="h6 mb-2">
-                        {{-- <a href="{{ route('quizzes.show', $quiz->id) }}">
+                        <a href="{{ route('quizzes.show', $quiz->id) }}">
                             {{$quiz->title}}
-                        </a>  --}}
+                        </a> 
                     </h2>
-                    {{-- <div class="small text-muted">
-                        {{ $post->published_at->format('d.m.Y H.i.s') }}
-                    </div> --}}
                 </div>
+                <a href="">
+                </a> 
             @endforeach
-
+            
             {{-- {{$posts->links()}} --}}
         @endempty
 @endsection

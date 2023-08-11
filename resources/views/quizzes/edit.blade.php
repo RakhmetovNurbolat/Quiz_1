@@ -6,9 +6,9 @@
         <x-title>
             {{__('РЕДАКТИРОВАТЬ')}}
             <x-slot name="link">
-                {{-- <a href="{{ route('quizzes.show', $quiz->id) }}">
+                <a href="{{ route('quizzes.show', $quiz->id) }}">
                     {{__('Назад')}}
-                </a> --}}
+                </a>
             </x-slot>
         </x-title>
         <x-quiz.form action="{{route('quizzes.update', $quiz->id)}} " method="put" :quiz=$quiz>

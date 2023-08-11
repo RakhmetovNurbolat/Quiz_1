@@ -12,7 +12,6 @@ class Option extends Model
         'text', 'is_correct',
     ];
     
-    // Связь с вопросом
     public function question() {
         return $this->belongsTo(Question::class);
     }

@@ -31,7 +31,7 @@ class QuizController extends Controller
             'title' => $validated['title'],
             'description' => $validated['description'],
         ]);
-        //dd($quiz);
+        return redirect()->route('quizzes.show', ['quiz' => $quiz->id]);
     }
 
     public function show(Quiz $quiz)
@@ -43,15 +43,28 @@ class QuizController extends Controller
         return view('quizzes.edit', compact('quiz'));
     }
     public function update(Request $request, Quiz $quiz){
-        return view('quizzes.edit', compact('quiz'));
-    }
-    public function startQuiz(Quiz $quiz)
-    {
-        // Начало прохождения квиза
+        
+        $quiz->update([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+        ]);
+    
+        return redirect()->route('quizzes.show', ['quiz' => $quiz->id]);
     }
 
-    public function submitQuiz(Request $request, Quiz $quiz)
-    {
-        // Обработка результатов прохождения квиза
+    public function delete(Quiz $quiz){
+        dd($quiz);
+        $quiz->delete();
+        return redirect()->route('quizzes');
     }
+
+    // public function startQuiz(Quiz $quiz)
+    // {
+    //     // Начало прохождения квиза
+    // }
+
+    // public function submitQuiz(Request $request, Quiz $quiz)
+    // {
+    //     // Обработка результатов прохождения квиза
+    // }
 }

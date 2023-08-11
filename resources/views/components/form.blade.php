@@ -10,10 +10,10 @@
     @unless ($_method)
         @method($method)
     @endunless
+    
     @unless ($method == 'GET')
         @csrf
     @endunless
-   
-    
+
     {{ $slot }}
 </form>

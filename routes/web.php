@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\RegisterController;
 
@@ -33,16 +34,21 @@ Route::middleware('guest')->group(function(){
 
 
 Route::get('/quizzes', [QuizController::class, 'index'])->name('quizzes');
-Route::get('/quizzes/{quiz}', [QuizController::class, 'show'])->name('quizzes.show');
 
 Route::get('/quizzes/create', [QuizController::class, 'create'])->name('quizzes.create');
 Route::post('/quizzes', [QuizController::class, 'store'])->name('quizzes.store');
 
-Route::get('/quizzes/{quiz}/edit', [QuizController::class, 'edit'])->name('quizzes.edit');
-Route::get('/quizzes/{quiz}', [QuizController::class, 'update'])->name('quizzes.update');
+Route::get('/quizzes/{quiz}', [QuizController::class, 'show'])->name('quizzes.show');
 
-Route::get('/quizzes/{quiz}/start', [QuizController::class, 'startQuiz'])->name('quizzes.start');
-Route::post('/quizzes/{quiz}/submit', [QuizController::class, 'submitQuiz'])->name('quizzes.submit');
+Route::get('/quizzes/{quiz}/edit', [QuizController::class, 'edit'])->name('quizzes.edit');
+Route::put('/quizzes/{quiz}', [QuizController::class, 'update'])->name('quizzes.update');
+Route::delete('/quizzes/{quiz}', [QuizController::class, 'delete'])->name('quizzes.delete');
+
+
+Route::get('/questions/create/{quiz}', [QuestionController::class,'create'])->name('questions.create');
+Route::post('/questions',  [QuestionController::class,'store'])->name('questions.store');
+// Route::get('/quizzes/{quiz}/start', [QuizController::class, 'startQuiz'])->name('quizzes.start');
+// Route::post('/quizzes/{quiz}/submit', [QuizController::class, 'submitQuiz'])->name('quizzes.submit');
 
 
 
