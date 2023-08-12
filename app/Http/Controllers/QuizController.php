@@ -63,8 +63,25 @@ class QuizController extends Controller
         return view('quizzes.start', compact('quiz'));
     }
 
-    // public function submitQuiz(Request $request, Quiz $quiz)
-    // {
-    //     
-    // }
+    public function submitQuiz(Request $request, Quiz $quiz)
+    {
+        $quiz->load('questions.options');
+        $totalQuestions = count($quiz->questions);
+
+
+        $correctAnswers = 0;
+        
+        foreach ($quiz->questions as $question) {
+            $userAnswer = $request->input('question_' . $question->id);
+            $correctOption = $question->options->where('is_correct', true)->first();
+            
+            if ($correctOption && $userAnswer === strval($correctOption->id)) {
+                $correctAnswers++;
+            }
+        }
+    
+        $score = ($correctAnswers / $totalQuestions) * 100;
+    
+        return view('quizzes.result', compact('quiz', 'score'));
+    }
 }
