@@ -6,7 +6,7 @@
     <x-card>
         <x-card-body>
             <x-title> {{__('Создание вопроса')}} </x-title>
-            <x-question.form action="{{ route('questions.store') }}" method="post" :quiz=$quiz></x-question>
+            <x-question.form action="{{ route('questions.store') }}" method="post" :quiz=$quiz />
         </x-card-body>
     </x-card>
         

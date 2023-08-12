@@ -16,7 +16,7 @@
     
                 <x-form-item>
                     <x-label >{{ __('Описание:') }}</x-label>
-                    <x-trix name="description"/>
+                    <x-textarea name="description"/>
                 </x-form-item>
     
                 <x-button type="submit">

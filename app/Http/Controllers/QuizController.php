@@ -25,7 +25,7 @@ class QuizController extends Controller
             'title' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
         ]);
-    
+       
         $quiz = Quiz::query()->create([
             'user_id'       => User::query()->value('id'),
             'title' => $validated['title'],
@@ -53,18 +53,17 @@ class QuizController extends Controller
     }
 
     public function delete(Quiz $quiz){
-        dd($quiz);
         $quiz->delete();
         return redirect()->route('quizzes');
     }
 
     // public function startQuiz(Quiz $quiz)
     // {
-    //     // Начало прохождения квиза
+    //    
     // }
 
     // public function submitQuiz(Request $request, Quiz $quiz)
     // {
-    //     // Обработка результатов прохождения квиза
+    //     
     // }
 }

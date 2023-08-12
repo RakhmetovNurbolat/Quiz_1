@@ -12,7 +12,7 @@
 
     <x-form-item>
         <x-label >{{ __('Описание:') }}</x-label>
-        <x-trix name="description" value="{{$quiz->description ?? ''}}" />
+        <x-textarea name="description" value="{{$quiz->description ?? ''}}" />
     </x-form-item>
 
     {{ $slot }}

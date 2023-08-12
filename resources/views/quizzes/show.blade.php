@@ -15,7 +15,7 @@
 
             <x-slot name="delete">
                 <x-form action="{{route('quizzes.delete', $quiz->id)}} " method="delete">
-                    <x-button size="sm">
+                    <x-button type="submit" size="sm">
                         {{__('Удалить')}}
                     </x-button-link>
                 </x-form>

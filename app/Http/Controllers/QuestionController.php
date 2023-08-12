@@ -14,6 +14,7 @@ class QuestionController extends Controller
         return view('questions.create', compact('quiz'));
     }
 
+
     public function store(Request $request)
     {
         
@@ -21,7 +22,7 @@ class QuestionController extends Controller
 
         $validated = $request->validate([
             'question_text'     => ['required','string'],
-            'option'           => ['required','array','min:2'], 
+            'options'           => ['required','array','min:2'], 
             'correct_option'    => ['required','integer','between:0,' . (count($request->input('options')) - 1)],
         ]);
 
@@ -29,7 +30,7 @@ class QuestionController extends Controller
         $question = new Question();
         $question->text = $request->input('question_text');
         $question->quiz_id = $request->input('quizId');
-        //$question->save();
+        $question->save();
 
        
         foreach ($request->input('options') as $index => $optionText) {
@@ -37,7 +38,7 @@ class QuestionController extends Controller
             $option->text = $optionText;
             $option->is_correct = ($index == $request->input('correct_options'));
             $option->question_id = $question->id;
-            //$option->save();
+            $option->save();
         }
 
         return redirect()->route('quizzes'); 
