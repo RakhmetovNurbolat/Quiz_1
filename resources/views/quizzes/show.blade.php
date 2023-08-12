@@ -34,8 +34,11 @@
             <h2 class="h6 mb-2">
                 {!! $quiz->description !!}  
             </h2>
-            <a href="{{ route('quizzes') }}">
+            <x-button-link href="{{ route('quizzes') }}">
                 {{__('Назад')}}
-            </a>
+            </x-button-link>
+            <x-button-link href="{{ route('quizzes.start', $quiz->id) }}">
+                {{__('Начать тест')}}
+            </x-button-link>
         </div>
 @endsection

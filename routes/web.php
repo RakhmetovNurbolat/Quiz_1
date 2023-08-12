@@ -67,11 +67,12 @@ Route::get('/quizzes/{quiz}/edit', [QuizController::class, 'edit'])->name('quizz
 Route::put('/quizzes/{quiz}', [QuizController::class, 'update'])->name('quizzes.update');
 Route::delete('/quizzes/{quiz}', [QuizController::class, 'delete'])->name('quizzes.delete');
 
+Route::get('/quizzes/{quiz}/start', [QuizController::class, 'startQuiz'])->name('quizzes.start');
+Route::post('/quizzes/{quiz}/submit', [QuizController::class, 'submitQuiz'])->name('quizzes.submit');
 
 Route::get('/questions/create/{quiz}', [QuestionController::class,'create'])->name('questions.create');
 Route::post('/questions',  [QuestionController::class,'store'])->name('questions.store');
-// Route::get('/quizzes/{quiz}/start', [QuizController::class, 'startQuiz'])->name('quizzes.start');
-// Route::post('/quizzes/{quiz}/submit', [QuizController::class, 'submitQuiz'])->name('quizzes.submit');
+
 
 
 

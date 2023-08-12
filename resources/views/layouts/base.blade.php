@@ -8,7 +8,7 @@
     @stack('css')
     <title>@yield('page.title', config('app.name'))</title>
     <style>
-        .container { max-width: 720px;}
+        .container { max-width: 1200px;}
         .required::after {content: '*'; color: red; margin-left: 3px;}
     </style>
 </head>

@@ -3,43 +3,18 @@
 <x-form  {{ $attributes }}>
     <input type="hidden" name="quizId" value="{{$quiz->id}}">
     <x-form-item>
-        <x-label required>{{ __('Текст вопроса') }}</x-label>
-        <x-input name="question_text" value="{{$question->text ?? ''}}" />
-        <x-error/>
-    </x-form-item>
-
-    <x-form-item>
-        <x-label >{{ __('Варианты ответов') }}</x-label>
-        
-            <div class="m-3">
-                <input type="radio" name="correct_option" value="0" />
-                <input type="text" name="options[]" />
-                
-            </div>
-            <div class="m-3">
-                <input type="radio" name="correct_option" value="1" />
-                <input type="text" name="options[]" />
-                
-            </div>
-            <div class="m-3">
-                <input type="radio" name="correct_option" value="2" />
-                <input type="text" name="options[]" />
-                
-            </div>
-            <div class="m-3">
-                <input type="radio" name="correct_option" value="3"  />
-                <input type="text" name="options[]" />
-                
-            </div>
-       
-        {{-- <x-button type="button" id="add-option">Добавить вариант ответа</x-button> --}}
-        <x-button type="submit">Создать вопрос</x-button>
+        <div id="questions-container">
+            
+        </div>
+        <button type="button" id="add-question" style="background:#0d6efd;color:white;border-radius:4px;margin-bottom:5px">Добавить вопрос</button>
+        <br>
+        <button type="submit" style="background:#0d6efd;color:white;border-radius:4px;margin-bottom:5px">Создать тест</button>
     </x-form-item>
 
     {{ $slot }}
-    {{-- @once
+    @once
         @push('js')
             <script src="/js/addOption.js"></script>
         @endpush
-    @endonce --}}
+    @endonce
 </x-form>

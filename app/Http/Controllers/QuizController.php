@@ -57,10 +57,11 @@ class QuizController extends Controller
         return redirect()->route('quizzes');
     }
 
-    // public function startQuiz(Quiz $quiz)
-    // {
-    //    
-    // }
+    public function startQuiz(Quiz $quiz)
+    {
+        $quiz->load('questions.options');
+        return view('quizzes.start', compact('quiz'));
+    }
 
     // public function submitQuiz(Request $request, Quiz $quiz)
     // {

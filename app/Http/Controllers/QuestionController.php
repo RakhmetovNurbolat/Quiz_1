@@ -18,29 +18,34 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         
-        //dd($request->toArray());
+        // dd($request->toArray());
 
         $validated = $request->validate([
-            'question_text'     => ['required','string'],
-            'options'           => ['required','array','min:2'], 
-            'correct_option'    => ['required','integer','between:0,' . (count($request->input('options')) - 1)],
+            'questions'                     => 'required|array|min:1',
+            'questions.*.text'              => 'required|string|max:255',
+            'questions.*.options'           => 'required|array|min:2',
+            'questions.*.options.*'         => 'required|string|max:255',
+            'questions.*.correct_option'    => 'required|integer|min:0',
         ]);
 
         
-        $question = new Question();
-        $question->text = $request->input('question_text');
-        $question->quiz_id = $request->input('quizId');
-        $question->save();
 
-       
-        foreach ($request->input('options') as $index => $optionText) {
-            $option = new Option();
-            $option->text = $optionText;
-            $option->is_correct = ($index == $request->input('correct_options'));
-            $option->question_id = $question->id;
-            $option->save();
+        foreach ($request->questions as $questionData) {
+            $question = Question::create([
+                'quiz_id' => $request->input('quizId'),
+                'text' => $questionData['text'],
+            ]);
+
+            foreach ($questionData['options'] as $index => $optionText) {
+                $isCorrect = $index === $questionData['correct_option'];
+
+                Option::create([
+                    'question_id' => $question->id,
+                    'text' => $optionText,
+                    'is_correct' => $isCorrect,
+                ]);
+            }
         }
-
         return redirect()->route('quizzes'); 
     }
 }
