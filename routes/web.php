@@ -2,10 +2,11 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\LoginController;
+
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
-use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\QuizResultController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -69,6 +70,10 @@ Route::delete('/quizzes/{quiz}', [QuizController::class, 'delete'])->name('quizz
 
 Route::get('/quizzes/{quiz}/start', [QuizController::class, 'startQuiz'])->name('quizzes.start');
 Route::post('/quizzes/{quiz}/submit', [QuizController::class, 'submitQuiz'])->name('quizzes.submit');
+
+
+Route::get('/quizzes/results', [QuizResultController::class, 'index'])->name('quizzes.results.show');
+
 
 Route::get('/questions/create/{quiz}', [QuestionController::class,'create'])->name('questions.create');
 Route::post('/questions',  [QuestionController::class,'store'])->name('questions.store');

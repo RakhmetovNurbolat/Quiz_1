@@ -1,11 +1,11 @@
 <x-card>
     <x-card-header>
         <x-card-title>
-            {{__('Login')}}
+            {{__('Вход')}}
         </x-card-title>
     
         <x-slot name="right">
-            <a href="{{route('register')}}"> register </a>
+            <a href="{{route('register')}}"> Регистрация </a>
         </x-slot>
     </x-card-header>
         
@@ -23,14 +23,10 @@
                 <x-input type="password" name="password" />
             </x-form-item>
 
-            <x-form-item>
-                <x-checkbox name="remember">
-                    {{__('sesee')}}
-                </x-checkbox>
-            </x-form-item>
             
-            <x-button type="submit" color="success" size="sm">
-                {{__('Send')}}
+            
+            <x-button type="submit" color="success">
+                {{__('Войти')}}
             </x-button>
         
         </x-form>

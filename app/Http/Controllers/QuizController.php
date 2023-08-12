@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Quiz;
+use App\Models\QuizResult;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -87,7 +88,13 @@ class QuizController extends Controller
         }
     
         $score = ($correctAnswers / $totalQuestions) * 100;
-    
+        
+        $quizResult = QuizResult::create([
+            'user_id' => auth()->user()->id,
+            'quiz_id' => $quiz->id,
+            'score' => $score,
+        ]);
+
         return view('quizzes.result', compact('quiz', 'score'));
     }
 }

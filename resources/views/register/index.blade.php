@@ -1,16 +1,16 @@
 @extends('layouts.auth')
 
-@section('page.title', 'Register')
+@section('page.title', 'Регистрация')
     
 
 @section('auth.content')
     <x-card>
         <x-card-header>
             <x-card-title>
-                {{__('Register')}}
+                {{__('Регистрация')}}
             </x-card-title>
             <x-slot name="right">
-                <a href="{{route('login')}}"> login </a>
+                <a href="{{route('login')}}"> Вход </a>
             </x-slot>
         </x-card-header>
             
