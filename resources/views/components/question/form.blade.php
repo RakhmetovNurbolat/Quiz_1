@@ -14,7 +14,7 @@
     {{ $slot }}
     @once
         @push('js')
-            <script src="/js/addOption.js"></script>
+            <script src="/public/js/addOption.js"></script>
         @endpush
     @endonce
 </x-form>

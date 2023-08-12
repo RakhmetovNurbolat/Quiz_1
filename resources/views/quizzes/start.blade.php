@@ -10,15 +10,22 @@
     <x-form action="{{ route('quizzes.submit', ['quiz' => $quiz]) }}" method="POST">
         
         @foreach ($quiz->questions as $question)
-            <h6>{{ $question->text }}</h6>
-            <ul style="list-style-type: none;">
-                @foreach ($question->options as $option)
-                    <li >
-                        <input type="radio" name="question_{{ $question->id }}" value="{{ $option->id }}">
-                        {{ $option->text }}
-                    </li>
-                @endforeach
-            </ul>
+            <x-card>
+                <x-card-body>
+                    <h6>{{ $question->text }}</h6>
+                <ul style="list-style-type: none;">
+                    @foreach ($question->options as $option)
+                        <li >
+                            <input type="radio" name="question_{{ $question->id }}" value="{{ $option->id }}">
+                            {{ $option->text }}
+                        </li>
+                    @endforeach
+                </ul>
+
+                </x-card-body>
+            </x-card>
+
+            
         @endforeach
 
         <x-button type="submit">{{__('Завершить')}}</x-button>

@@ -30,6 +30,6 @@
                 </div>
             @endforeach
             
-            {{-- {{$posts->links()}} --}}
+        
         @endempty
 @endsection
