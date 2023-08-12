@@ -10,10 +10,7 @@
     <x-form action="{{ route('quizzes.submit', ['quiz' => $quiz]) }}" method="POST">
         
         @foreach ($quiz->questions as $question)
-            @php
-                if ($start == 0) {$start = $question->id; }
-            @endphp
-            <h6>Вопрос:{{$question->id-$start + 1}} {{ $question->text }}</h6>
+            <h6>{{ $question->text }}</h6>
             <ul style="list-style-type: none;">
                 @foreach ($question->options as $option)
                     <li >

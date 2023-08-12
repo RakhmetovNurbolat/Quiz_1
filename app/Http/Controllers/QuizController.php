@@ -28,7 +28,7 @@ class QuizController extends Controller
         ]);
        
         $quiz = Quiz::query()->create([
-            'user_id'       => User::query()->value('id'),
+            'user_id'       => auth()->user()->id,
             'title' => $validated['title'],
             'description' => $validated['description'],
         ]);

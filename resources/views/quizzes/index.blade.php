@@ -6,11 +6,16 @@
         <x-title>
             {{__('Тесты')}}
 
-            <x-slot name="right">
-                <x-button-link href="{{ route('quizzes.create') }}">
-                    {{__('Создавать')}}
-                </x-button-link>
-            </x-slot>
+            @auth
+                @if(auth()->user()->isAdmin()) <!-- Проверьте, что метод isAdmin() верно определен в вашей модели User -->
+                    <x-slot name="right">
+                        <x-button-link href="{{ route('quizzes.create') }}">
+                            {{__('Создавать')}}
+                        </x-button-link>
+                    </x-slot>
+                @endif
+            @endauth
+            
         </x-title>
         @empty($quizzes)
             Empty

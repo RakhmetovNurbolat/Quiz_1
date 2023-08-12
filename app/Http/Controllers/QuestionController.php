@@ -20,7 +20,7 @@ class QuestionController extends Controller
         
         // dd($request->toArray());
 
-        $validated = $request->validate([
+        $request->validate([
             'questions'                     => 'required|array|min:1',
             'questions.*.text'              => 'required|string|max:255',
             'questions.*.options'           => 'required|array|min:2',
@@ -35,10 +35,9 @@ class QuestionController extends Controller
                 'quiz_id' => $request->input('quizId'),
                 'text' => $questionData['text'],
             ]);
-
+            
             foreach ($questionData['options'] as $index => $optionText) {
-                $isCorrect = $index === $questionData['correct_option'];
-
+                $isCorrect = ($index == $questionData['correct_option']);
                 Option::create([
                     'question_id' => $question->id,
                     'text' => $optionText,
