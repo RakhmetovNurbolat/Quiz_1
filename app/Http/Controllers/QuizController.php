@@ -53,7 +53,13 @@ class QuizController extends Controller
     }
 
     public function delete(Quiz $quiz){
+        foreach ($quiz->questions as $question) {
+            $question->options()->delete();
+        }
+        $quiz->questions()->delete();
+    
         $quiz->delete();
+    
         return redirect()->route('quizzes');
     }
 
