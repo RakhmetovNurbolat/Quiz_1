@@ -23,8 +23,6 @@
                         </a> 
                     </h2>
                 </div>
-                <a href="">
-                </a> 
             @endforeach
             
             {{-- {{$posts->links()}} --}}

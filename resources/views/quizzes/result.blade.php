@@ -1,2 +1,17 @@
-<h1>Результаты теста "{{ $quiz->title }}"</h1>
-<p>Ваш результат: {{ $score }}%</p>
+@extends('layouts.main')
+
+@section('page.title', 'Тест')
+
+@section('main.content')
+        <x-card>
+            <x-card-body >
+                <x-title>
+                    Результаты теста "{{ $quiz->title }}"
+                </x-title>
+                <x-card-title>
+                    Ваш результат: {{ $score }}%
+                </x-card-title>
+            </x-card-body>
+        </x-card>
+
+@endsection

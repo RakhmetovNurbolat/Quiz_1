@@ -1,14 +1,19 @@
 @extends('layouts.main')
 
 @section('page.title', 'Тест')
-
+@php
+    $start = 0;
+@endphp
 @section('main.content')        
-    <h1>{{ $quiz->name }}</h1>
+    <h1>{{ $quiz->title }}</h1>
 
     <x-form action="{{ route('quizzes.submit', ['quiz' => $quiz]) }}" method="POST">
         
         @foreach ($quiz->questions as $question)
-            <h3>Вопрос:{{$question->id}} {{ $question->text }}</h3>
+            @php
+                if ($start == 0) {$start = $question->id; }
+            @endphp
+            <h6>Вопрос:{{$question->id-$start + 1}} {{ $question->text }}</h6>
             <ul style="list-style-type: none;">
                 @foreach ($question->options as $option)
                     <li >

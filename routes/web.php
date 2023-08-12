@@ -57,6 +57,8 @@ Route::middleware('auth')->group(function () {
         ->name('logout');
 });
 
+Route::get('/quizzes/results', [QuizResultController::class, 'index'])->name('quizzes.results.show');
+
 Route::get('/quizzes', [QuizController::class, 'index'])->name('quizzes');
 
 Route::get('/quizzes/create', [QuizController::class, 'create'])->name('quizzes.create');
@@ -72,7 +74,7 @@ Route::get('/quizzes/{quiz}/start', [QuizController::class, 'startQuiz'])->name(
 Route::post('/quizzes/{quiz}/submit', [QuizController::class, 'submitQuiz'])->name('quizzes.submit');
 
 
-Route::get('/quizzes/results', [QuizResultController::class, 'index'])->name('quizzes.results.show');
+
 
 
 Route::get('/questions/create/{quiz}', [QuestionController::class,'create'])->name('questions.create');

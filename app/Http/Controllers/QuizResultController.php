@@ -11,7 +11,7 @@ class QuizResultController extends Controller
     public function index(Request $request)
     {
         
-        dd($request);
+        
         $userId = auth()->user()->id;
         $quizResults = QuizResult::where('user_id', $userId)->get();
         
