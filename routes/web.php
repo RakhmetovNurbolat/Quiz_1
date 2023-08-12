@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
@@ -24,14 +26,35 @@ Route::redirect('/home' , '/')->name('home.redirect');
 
 
 //Route::middleware('guest')->group(function(){
-Route::middleware('guest')->group(function(){
-    Route::get('/register', [RegisterController::class, 'index'])->name('register');
-    Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+// Route::middleware('guest')->group(function(){
+//     Route::get('/register', [RegisterController::class, 'index'])->name('register');
+//     Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
-    Route::get('/login', [LoginController::class, 'index'])->name('login');//->withoutMiddleware('quest');
-    Route::post('/login', [LoginController::class, 'store'])->name('login.store');
+//     Route::get('/login', [LoginController::class, 'index'])->name('login');//->withoutMiddleware('quest');
+//     Route::post('/login', [LoginController::class, 'store'])->name('login.store');
+// });
+
+Route::middleware('guest')->group(function () {
+    // отображение формы регистрации
+    Route::get('register', [RegisteredUserController::class, 'create'])
+        ->name('register');
+
+    // прием данных с формы регистрации
+    Route::post('register', [RegisteredUserController::class, 'store'])->name('register.store');
+
+    // отображение формы логина
+    Route::get('login', [AuthenticatedSessionController::class, 'create'])
+        ->name('login');
+
+    // прием данных с формы логина
+    Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login.store');
 });
 
+Route::middleware('auth')->group(function () {
+    // роутер для выхода из своего аккаунта
+    Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])
+        ->name('logout');
+});
 
 Route::get('/quizzes', [QuizController::class, 'index'])->name('quizzes');
 
