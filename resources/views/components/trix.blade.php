@@ -4,11 +4,11 @@
 
 @once
     @push('css')
-        <link rel="stylesheet" href="/css/trix.css">
+        <link rel="stylesheet" href="/public/css/trix.css">
     @endpush
 
 
     @push('js')
-        <script src="/js/trix.js"></script>
+        <script src="/public/js/trix.js"></script>
     @endpush
 @endonce
